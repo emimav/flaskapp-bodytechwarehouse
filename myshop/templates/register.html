@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+		<div class="row">		
+			<hr style="margin-top:0;width:97%">
+			<div class="col-lg-6">
+				{% if form.errors %}
+				{% for error in form.errors %}
+				<p>{{ error}}</p>
+				{% endfor %}
+				{% endif %}
+				<form class="form-signin" method="POST">
+					<h2 class="form-signin-heading">Please register</h2>
+					{{  form.hidden_tag() }}
+
+					<div class="form-group">
+						<label>Username</label>
+						{{ form.username(class="form-control") }}
+					</div>
+					<div class="form-group">
+						<label>Password</label>
+						{{ form.password(class="form-control") }}
+					</div>
+					<div class="form-group">
+						<label>Confirm Password</label>
+						{{ form.confirm_password(class="form-control") }}
+					</div>
+					<div class="form-group">
+						<label>Email</label>
+						{{ form.email(class="form-control") }}
+					</div>
+					 	{{ form.recaptcha }}
+
+					<button class="btn btn-default" type="submit">
+					Register
+					</button>
+					
+				</form>	
+                </div>
+        </div>
+    </div>
+	<hr style="width:60%">
+    <div style="margin-top:50px;" class="container">
+		<div class="row">
+			<div class="col-lg-8">	
+			</div>
+		</div>
+	</div>
+{% endblock %}

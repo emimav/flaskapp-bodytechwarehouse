@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <h1>{{title}}</h1>
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="container">
+		<div class="row">
+			<center><h3>All cart items</h3></center>
+			{% for cart_item in products %}
+			{% set product = cart_item.item_id %}
+			<div class="col-lg-6">
+			<div class="card card-default">
+			  <div class="card-header">{{product["title"]}}</div>
+			  <div class="card-body card-5-7">
+				<div class="card-left">
+				  <img style="max-height:130px;" src="{{ url_for('static', filename=product['images'][0]) }}" class="img-responsive">
+				</div>
+				<div class="card-right">
+				  <h4>{{product["title"]}}</h4>
+				  <h4>£{{product["price"]}}</h4>
+				  <p><a href="{{'/item/{}/remove_from_cart'.format(product['id'])}}" class="btn btn-primary">Remove from Cart</a></p>
+				  <p></p>
+				</div>
+			  </div>
+			</div>
+			</div>
+	{% endfor %}
+
+</div>
+<center><a style="margin-top:30px;" href="/billing">Go to Checkout</a></center>
+</div>
+
+{% endblock %}

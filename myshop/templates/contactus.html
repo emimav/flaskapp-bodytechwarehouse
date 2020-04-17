@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+		<div class="row">		
+			<hr style="margin-top:0;width:97%">
+			<div class="col-lg-6">
+				
+				<form class="form-signin" method="POST">
+					<h2 class="form-signin-heading">Please use this form to contact us</h2>
+					{{  form.hidden_tag() }}
+
+					<div class="form-group">
+						<label>Name</label>
+						{{ form.name(class="form-control") }}
+					</div>
+					<div class="form-group">
+						<label>Message</label>
+						{{ form.content(class="form-control") }}
+					</div>
+					<button class="btn btn-default" type="submit">
+					Submit
+					</button>
+					
+				</form>	
+                </div>
+        </div>
+    </div>
+	<hr style="width:60%">
+    <div style="margin-top:50px;" class="container">
+		<div class="row">
+			<div class="col-lg-8">	
+			</div>
+		</div>
+	</div>
+{% endblock %}

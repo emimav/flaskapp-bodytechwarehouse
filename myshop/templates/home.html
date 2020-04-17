@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">			
+			<div class="col-lg-12">		
+				<div class="product-container">
+				  <!--Single Product Start-->
+				  {% for product in products %}
+					<div class="col-sm-4">
+						<div class="card card-default">
+						  <div class="card-header">{{product['title']}}</div>
+						  <div class="card-body card-5-7">
+							<div class="card-left">
+							  <img style="max-height:130px;" src="{{ url_for('static', filename=product['images'][0]) }}" class="img-responsive">
+							</div>
+							<div class="card-right">
+							  <h4>{{product['title']}}</h4>
+							  <p>{{product['desciption']}}</p>
+							  <p>Price: £{{product["price"]}}</p>
+							</div>
+						  </div>
+						  <div class="card-footer"><a style="color:#fff" href="{{'/item/{}/add_to_cart'.format(product['id'])}}">Add to Cart</a>
+						  <a style="color:#fff; float:right;"href="{{'/item/{}'.format(product['id'])}}">See details</a></div>
+						</div>
+					</div>
+				  {% endfor %}
+				  <!--Single Product End-->
+				</div>
+			</div>		
+		</div>
+	</div>
+
+  
+    <br>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+    	{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+		{% for category, message in messages %}
+        <p>{{ message }}
+        {% endfor %} {% endif %} {% endwith %}
+		<div class="row">		
+			<h2 style="margin-left:18px">Item Review - {{item["title"]}}</h3><br>
+			<hr style="margin-top:0;width:97%">
+			<div class="col-lg-6">
+					<div class="card card-default">
+					  <div class="card-header">{{item["title"]}}</div>
+					  <div class="card-body card-5-7">
+						<div class="card-left">
+						  <img style="max-height:130px;" src="{{ url_for('static', filename=item['images'][0]) }}" class="img-responsive">
+						</div>
+						<div class="card-right">
+						  <h4>{{item["title"]}}</h4>
+						  <p>{{item["description"]}}</p>
+						  <p>£{{item["price"]}}</p>
+						  <p><a style="margin-top:30px" class="btn btn-default" href="{{'/item/{}/add_to_cart'.format(item['id'])}}">Add to Cart</a></p>
+                           <p>Sizes</p>
+						  <select class="form-control">
+                           {% for size in item["sizes"]%}
+                            {% if loop.index == 1%}
+                             {% endif %}
+                               <option>{{size}}</option>
+                            {% endfor %}			  	
+						  </select><br>
+                           <p>Colors</p>
+                           {% if colors %}
+							   <select class="form-control">
+	                           {% for color in item["colors"]%}
+	                             {% if loop.index == 1%}
+	                             {% endif %}
+	                               <option>{{color}}</option>
+	                          {% endfor %}						  	
+							</select>
+							{% else %}
+							<select class="form-control"><option>No colours available</option></select>
+							{% endif %}
+						</div>
+					  </div>
+					</div>	
+                </div>
+        </div>
+    </div>
+	<hr style="width:60%">
+    <div style="margin-top:50px;" class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="card card-outline-secondary my-4">
+					<div class="card-header">
+						<b>Product Reviews</b>
+					</div><br><br>
+					<div class="card-body">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+					<small class="text-muted">Posted by Anonymous on 3/1/17</small>
+					<hr>
+					{% if current_user.is_authenticated %}
+					<h4 class="form-signin-heading">Leave a review</h4>
+					<div class="col-lg-4">
+						<form id="rating" style="display: inline-flex" class="form-inline" action="" method="POST">
+							<input id="csrf_token" name="csrf_token" type="hidden" value="ImNiODNiZmFjMjM1ZGRjNTdmZjkyNzkwNTIxM2IzNDViZTMzMTgxOTgi.D3XHMw.SbpUpYcn4iACisPmLRcaAm6zzAs">
+							<div class="form-group">
+								<label style="display:inline;" for="name">Review</label>
+								{{ form.content(class="form-control") }}
+							</div>
+							<div style="margin-left:10px" class="form-group">
+								<label style="margin-bottom: -5px;" for="review">Rating out of 5</label>
+								{{ form.rating(class="form-control") }}
+							</div>
+							<div style="margin-top: 17px;" class="form-group">
+								<input style="margin-left:20px; height:40px;" type="submit" class="btn btn-success" value="Submit a review">
+							</div>
+						</form>		
+					</div>
+					{% endif %}
+				</div>		
+			</div>
+		</div>
+	</div>
+{% endblock %}

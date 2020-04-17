@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+		<div class="row">		
+			<hr style="margin-top:0;width:97%">
+			<div class="col-lg-6">
+		<form class="form-signin" method="POST">
+			<h2 class="form-signin-heading">Please enter your payment details below</h2>
+			{{  form.hidden_tag() }}
+
+			<div class="form-group">
+				<label>First name</label>
+				{{ form.first_name(class="form-control") }}
+			</div>
+			<div class="form-group">
+				<label>Last name</label>
+				{{ form.last_name(class="form-control") }}
+			</div>
+			<div class="form-group">
+				<label>Billing address</label>
+				{{ form.billing_addr(class="form-control") }}
+			</div>
+			<div class="form-group">
+				<label>Credit card number</label>
+				{{ form.credit_card_num(class="form-control") }}
+			</div>
+			<div class="form-group">
+				<label>Credit card expiry date</label>
+				{{ form.credit_card_expiry(class="form-control") }}
+			</div>
+			<div class="form-group">
+				<label>Billing date</label>
+				{{ form.bill_date(class="form-control") }}
+			</div>
+			<button class="btn btn-default" type="submit">
+			Pay now
+			</button>
+			
+		</form>	
+                </div>
+        </div>
+    </div>
+	<hr style="width:60%">
+    <div style="margin-top:50px;" class="container">
+		<div class="row">
+			<div class="col-lg-8">	
+			</div>
+		</div>
+	</div>
+{% endblock %}
